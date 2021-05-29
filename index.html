@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Main</title>
+  <title>Main2</title>
   <style>body { padding: 0; margin: 0; }</style>
 </head>
 
@@ -5195,67 +5195,180 @@ var $elm$core$Task$perform = F2(
 				A2($elm$core$Task$map, toMessage, task)));
 	});
 var $elm$browser$Browser$element = _Browser_element;
-var $elm$core$Dict$RBEmpty_elm_builtin = {$: 'RBEmpty_elm_builtin'};
-var $elm$core$Dict$empty = $elm$core$Dict$RBEmpty_elm_builtin;
-var $author$project$Main$Folder = function (a) {
+var $author$project$Main2$Folder = function (a) {
 	return {$: 'Folder', a: a};
 };
-var $author$project$Main$someFolder = $author$project$Main$Folder(
-	{
-		files: _List_fromArray(
-			[
-				{id: 'data1.csv', lastUpdated: $elm$core$Maybe$Nothing, name: 'data1.csv', size: $elm$core$Maybe$Nothing},
-				{id: 'data3.csv', lastUpdated: $elm$core$Maybe$Nothing, name: 'data3.csv', size: $elm$core$Maybe$Nothing},
-				{id: 'data2.csv', lastUpdated: $elm$core$Maybe$Nothing, name: 'data2.csv', size: $elm$core$Maybe$Nothing},
-				{id: 'data3.csv', lastUpdated: $elm$core$Maybe$Nothing, name: 'data3.csv', size: $elm$core$Maybe$Nothing},
-				{id: 'data2.csv', lastUpdated: $elm$core$Maybe$Nothing, name: 'data2.csv', size: $elm$core$Maybe$Nothing},
-				{id: 'data3.csv', lastUpdated: $elm$core$Maybe$Nothing, name: 'data3.csv', size: $elm$core$Maybe$Nothing},
-				{id: 'data2.csv', lastUpdated: $elm$core$Maybe$Nothing, name: 'data2.csv', size: $elm$core$Maybe$Nothing},
-				{id: 'data3.csv', lastUpdated: $elm$core$Maybe$Nothing, name: 'data3.csv', size: $elm$core$Maybe$Nothing},
-				{id: 'data2.csv', lastUpdated: $elm$core$Maybe$Nothing, name: 'alexis.csv', size: $elm$core$Maybe$Nothing},
-				{id: 'data3.csv', lastUpdated: $elm$core$Maybe$Nothing, name: 'data3.csv', size: $elm$core$Maybe$Nothing},
-				{id: 'data2.csv', lastUpdated: $elm$core$Maybe$Nothing, name: 'data2.csv', size: $elm$core$Maybe$Nothing},
-				{id: 'data3.csv', lastUpdated: $elm$core$Maybe$Nothing, name: 'data3.csv', size: $elm$core$Maybe$Nothing},
-				{id: 'data2.csv', lastUpdated: $elm$core$Maybe$Nothing, name: 'data2.csv', size: $elm$core$Maybe$Nothing},
-				{id: 'data3.csv', lastUpdated: $elm$core$Maybe$Nothing, name: 'data3.csv', size: $elm$core$Maybe$Nothing},
-				{id: 'data2.csv', lastUpdated: $elm$core$Maybe$Nothing, name: 'b.csv', size: $elm$core$Maybe$Nothing},
-				{id: 'data3.csv', lastUpdated: $elm$core$Maybe$Nothing, name: 'data3.csv', size: $elm$core$Maybe$Nothing},
-				{id: 'data2.csv', lastUpdated: $elm$core$Maybe$Nothing, name: 'data2.csv', size: $elm$core$Maybe$Nothing},
-				{id: 'data3.csv', lastUpdated: $elm$core$Maybe$Nothing, name: 'data3.csv', size: $elm$core$Maybe$Nothing},
-				{id: 'data2.csv', lastUpdated: $elm$core$Maybe$Nothing, name: 'data2.csv', size: $elm$core$Maybe$Nothing}
-			]),
-		folders: _List_fromArray(
-			[
-				$author$project$Main$Folder(
-				{
-					files: _List_fromArray(
-						[
-							{id: 'data4.csv', lastUpdated: $elm$core$Maybe$Nothing, name: 'data4.csv', size: $elm$core$Maybe$Nothing}
-						]),
-					folders: _List_Nil,
-					id: 'folder1',
-					lastUpdated: $elm$core$Maybe$Nothing,
-					name: 'bsomefolder',
-					size: $elm$core$Maybe$Nothing
-				})
-			]),
-		id: 'root',
-		lastUpdated: $elm$core$Maybe$Nothing,
-		name: 'root',
-		size: $elm$core$Maybe$Just(10)
-	});
-var $author$project$Main$model = {
-	currentFolder: $elm$core$Maybe$Just($author$project$Main$someFolder),
-	data: $elm$core$Maybe$Nothing,
-	folderChain: _List_fromArray(
-		[$author$project$Main$someFolder]),
-	folderStructure: $elm$core$Dict$empty,
-	searchInput: ''
+var $author$project$Main2$folderA = $author$project$Main2$Folder(
+	{id: 'a', lastUpdated: $elm$core$Maybe$Nothing, name: 'Folder A', size: $elm$core$Maybe$Nothing});
+var $author$project$Main2$File = function (a) {
+	return {$: 'File', a: a};
 };
-var $elm$core$Platform$Cmd$batch = _Platform_batch;
-var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
-var $elm$core$Platform$Sub$batch = _Platform_batch;
-var $elm$core$Platform$Sub$none = $elm$core$Platform$Sub$batch(_List_Nil);
+var $author$project$Main2$file1 = $author$project$Main2$File(
+	{id: 'data1', lastUpdated: $elm$core$Maybe$Nothing, name: 'data1.csv', size: $elm$core$Maybe$Nothing});
+var $author$project$Main2$file2 = $author$project$Main2$File(
+	{id: 'data2', lastUpdated: $elm$core$Maybe$Nothing, name: 'data2.csv', size: $elm$core$Maybe$Nothing});
+var $author$project$Main2$file3 = $author$project$Main2$File(
+	{id: 'data3', lastUpdated: $elm$core$Maybe$Nothing, name: 'data3.csv', size: $elm$core$Maybe$Nothing});
+var $author$project$Main2$folderC = $author$project$Main2$Folder(
+	{id: 'c', lastUpdated: $elm$core$Maybe$Nothing, name: 'Folder C', size: $elm$core$Maybe$Nothing});
+var $author$project$Main2$folderD = $author$project$Main2$Folder(
+	{id: 'd', lastUpdated: $elm$core$Maybe$Nothing, name: 'Folder D', size: $elm$core$Maybe$Nothing});
+var $elm$core$Dict$RBEmpty_elm_builtin = {$: 'RBEmpty_elm_builtin'};
+var $elm$core$Dict$empty = $elm$core$Dict$RBEmpty_elm_builtin;
+var $elm$core$Dict$Black = {$: 'Black'};
+var $elm$core$Dict$RBNode_elm_builtin = F5(
+	function (a, b, c, d, e) {
+		return {$: 'RBNode_elm_builtin', a: a, b: b, c: c, d: d, e: e};
+	});
+var $elm$core$Dict$Red = {$: 'Red'};
+var $elm$core$Dict$balance = F5(
+	function (color, key, value, left, right) {
+		if ((right.$ === 'RBNode_elm_builtin') && (right.a.$ === 'Red')) {
+			var _v1 = right.a;
+			var rK = right.b;
+			var rV = right.c;
+			var rLeft = right.d;
+			var rRight = right.e;
+			if ((left.$ === 'RBNode_elm_builtin') && (left.a.$ === 'Red')) {
+				var _v3 = left.a;
+				var lK = left.b;
+				var lV = left.c;
+				var lLeft = left.d;
+				var lRight = left.e;
+				return A5(
+					$elm$core$Dict$RBNode_elm_builtin,
+					$elm$core$Dict$Red,
+					key,
+					value,
+					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Black, lK, lV, lLeft, lRight),
+					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Black, rK, rV, rLeft, rRight));
+			} else {
+				return A5(
+					$elm$core$Dict$RBNode_elm_builtin,
+					color,
+					rK,
+					rV,
+					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Red, key, value, left, rLeft),
+					rRight);
+			}
+		} else {
+			if ((((left.$ === 'RBNode_elm_builtin') && (left.a.$ === 'Red')) && (left.d.$ === 'RBNode_elm_builtin')) && (left.d.a.$ === 'Red')) {
+				var _v5 = left.a;
+				var lK = left.b;
+				var lV = left.c;
+				var _v6 = left.d;
+				var _v7 = _v6.a;
+				var llK = _v6.b;
+				var llV = _v6.c;
+				var llLeft = _v6.d;
+				var llRight = _v6.e;
+				var lRight = left.e;
+				return A5(
+					$elm$core$Dict$RBNode_elm_builtin,
+					$elm$core$Dict$Red,
+					lK,
+					lV,
+					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Black, llK, llV, llLeft, llRight),
+					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Black, key, value, lRight, right));
+			} else {
+				return A5($elm$core$Dict$RBNode_elm_builtin, color, key, value, left, right);
+			}
+		}
+	});
+var $elm$core$Basics$compare = _Utils_compare;
+var $elm$core$Dict$insertHelp = F3(
+	function (key, value, dict) {
+		if (dict.$ === 'RBEmpty_elm_builtin') {
+			return A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Red, key, value, $elm$core$Dict$RBEmpty_elm_builtin, $elm$core$Dict$RBEmpty_elm_builtin);
+		} else {
+			var nColor = dict.a;
+			var nKey = dict.b;
+			var nValue = dict.c;
+			var nLeft = dict.d;
+			var nRight = dict.e;
+			var _v1 = A2($elm$core$Basics$compare, key, nKey);
+			switch (_v1.$) {
+				case 'LT':
+					return A5(
+						$elm$core$Dict$balance,
+						nColor,
+						nKey,
+						nValue,
+						A3($elm$core$Dict$insertHelp, key, value, nLeft),
+						nRight);
+				case 'EQ':
+					return A5($elm$core$Dict$RBNode_elm_builtin, nColor, nKey, value, nLeft, nRight);
+				default:
+					return A5(
+						$elm$core$Dict$balance,
+						nColor,
+						nKey,
+						nValue,
+						nLeft,
+						A3($elm$core$Dict$insertHelp, key, value, nRight));
+			}
+		}
+	});
+var $elm$core$Dict$insert = F3(
+	function (key, value, dict) {
+		var _v0 = A3($elm$core$Dict$insertHelp, key, value, dict);
+		if ((_v0.$ === 'RBNode_elm_builtin') && (_v0.a.$ === 'Red')) {
+			var _v1 = _v0.a;
+			var k = _v0.b;
+			var v = _v0.c;
+			var l = _v0.d;
+			var r = _v0.e;
+			return A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Black, k, v, l, r);
+		} else {
+			var x = _v0;
+			return x;
+		}
+	});
+var $elm$core$Dict$fromList = function (assocs) {
+	return A3(
+		$elm$core$List$foldl,
+		F2(
+			function (_v0, dict) {
+				var key = _v0.a;
+				var value = _v0.b;
+				return A3($elm$core$Dict$insert, key, value, dict);
+			}),
+		$elm$core$Dict$empty,
+		assocs);
+};
+var $author$project$Main2$theChildren = $elm$core$Dict$fromList(
+	_List_fromArray(
+		[
+			_Utils_Tuple2(
+			'a',
+			_List_fromArray(
+				[$author$project$Main2$folderC, $author$project$Main2$file1])),
+			_Utils_Tuple2(
+			'c',
+			_List_fromArray(
+				[$author$project$Main2$folderD])),
+			_Utils_Tuple2(
+			'd',
+			_List_fromArray(
+				[$author$project$Main2$file2])),
+			_Utils_Tuple2(
+			'b',
+			_List_fromArray(
+				[$author$project$Main2$file3]))
+		]));
+var $author$project$Main2$folderB = $author$project$Main2$Folder(
+	{id: 'b', lastUpdated: $elm$core$Maybe$Nothing, name: 'Folder B', size: $elm$core$Maybe$Nothing});
+var $author$project$Main2$theFilesAndFolders = $elm$core$Dict$fromList(
+	_List_fromArray(
+		[
+			_Utils_Tuple2('a', $author$project$Main2$folderA),
+			_Utils_Tuple2('b', $author$project$Main2$folderB),
+			_Utils_Tuple2('c', $author$project$Main2$folderC),
+			_Utils_Tuple2('d', $author$project$Main2$folderD),
+			_Utils_Tuple2('data1', $author$project$Main2$file1),
+			_Utils_Tuple2('data2', $author$project$Main2$file2),
+			_Utils_Tuple2('data3', $author$project$Main2$file3)
+		]));
 var $elm$core$List$append = F2(
 	function (xs, ys) {
 		if (!ys.b) {
@@ -5264,7 +5377,130 @@ var $elm$core$List$append = F2(
 			return A3($elm$core$List$foldr, $elm$core$List$cons, ys, xs);
 		}
 	});
-var $author$project$Main$update = F2(
+var $author$project$Main2$fileOrFolderId = function (fileOrFolder) {
+	if (fileOrFolder.$ === 'File') {
+		var file = fileOrFolder.a;
+		return file.id;
+	} else {
+		var folder = fileOrFolder.a;
+		return folder.id;
+	}
+};
+var $elm$core$Dict$foldl = F3(
+	function (func, acc, dict) {
+		foldl:
+		while (true) {
+			if (dict.$ === 'RBEmpty_elm_builtin') {
+				return acc;
+			} else {
+				var key = dict.b;
+				var value = dict.c;
+				var left = dict.d;
+				var right = dict.e;
+				var $temp$func = func,
+					$temp$acc = A3(
+					func,
+					key,
+					value,
+					A3($elm$core$Dict$foldl, func, acc, left)),
+					$temp$dict = right;
+				func = $temp$func;
+				acc = $temp$acc;
+				dict = $temp$dict;
+				continue foldl;
+			}
+		}
+	});
+var $elm$core$Dict$get = F2(
+	function (targetKey, dict) {
+		get:
+		while (true) {
+			if (dict.$ === 'RBEmpty_elm_builtin') {
+				return $elm$core$Maybe$Nothing;
+			} else {
+				var key = dict.b;
+				var value = dict.c;
+				var left = dict.d;
+				var right = dict.e;
+				var _v1 = A2($elm$core$Basics$compare, targetKey, key);
+				switch (_v1.$) {
+					case 'LT':
+						var $temp$targetKey = targetKey,
+							$temp$dict = left;
+						targetKey = $temp$targetKey;
+						dict = $temp$dict;
+						continue get;
+					case 'EQ':
+						return $elm$core$Maybe$Just(value);
+					default:
+						var $temp$targetKey = targetKey,
+							$temp$dict = right;
+						targetKey = $temp$targetKey;
+						dict = $temp$dict;
+						continue get;
+				}
+			}
+		}
+	});
+var $elm$core$Dict$union = F2(
+	function (t1, t2) {
+		return A3($elm$core$Dict$foldl, $elm$core$Dict$insert, t2, t1);
+	});
+var $author$project$Main2$mergeDicts = function (dicts) {
+	return A3($elm$core$List$foldl, $elm$core$Dict$union, $elm$core$Dict$empty, dicts);
+};
+var $author$project$Main2$createParents = F2(
+	function (allFiles, childrenDict) {
+		var createParentsForAPair = F2(
+			function (parentKey, childrenList) {
+				var _v0 = A2($elm$core$Dict$get, parentKey, allFiles);
+				if (_v0.$ === 'Just') {
+					var fileOrFolder = _v0.a;
+					return A3(
+						$elm$core$List$foldl,
+						F2(
+							function (fof, acc) {
+								return A3(
+									$elm$core$Dict$insert,
+									$author$project$Main2$fileOrFolderId(fof),
+									fileOrFolder,
+									acc);
+							}),
+						$elm$core$Dict$empty,
+						childrenList);
+				} else {
+					return $elm$core$Dict$empty;
+				}
+			});
+		return $author$project$Main2$mergeDicts(
+			A3(
+				$elm$core$Dict$foldl,
+				F3(
+					function (k, v, acc) {
+						return A2(
+							$elm$core$List$append,
+							acc,
+							_List_fromArray(
+								[
+									A2(createParentsForAPair, k, v)
+								]));
+					}),
+				_List_Nil,
+				childrenDict));
+	});
+var $author$project$Main2$theParents = A2($author$project$Main2$createParents, $author$project$Main2$theFilesAndFolders, $author$project$Main2$theChildren);
+var $author$project$Main2$model = {
+	children: $author$project$Main2$theChildren,
+	currentFolder: $elm$core$Maybe$Just($author$project$Main2$folderA),
+	filesAndFolders: $author$project$Main2$theFilesAndFolders,
+	parents: $author$project$Main2$theParents,
+	searchInput: ''
+};
+var $elm$core$Platform$Cmd$batch = _Platform_batch;
+var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
+var $elm$core$Platform$Sub$batch = _Platform_batch;
+var $elm$core$Platform$Sub$none = $elm$core$Platform$Sub$batch(_List_Nil);
+var $author$project$Main2$update = F2(
 	function (msg, m) {
 		switch (msg.$) {
 			case 'Search':
@@ -5280,12 +5516,7 @@ var $author$project$Main$update = F2(
 					_Utils_update(
 						m,
 						{
-							currentFolder: $elm$core$Maybe$Just(folder),
-							folderChain: A2(
-								$elm$core$List$append,
-								m.folderChain,
-								_List_fromArray(
-									[folder]))
+							currentFolder: $elm$core$Maybe$Just(folder)
 						}),
 					$elm$core$Platform$Cmd$none);
 			case 'ClickFile':
@@ -5297,17 +5528,12 @@ var $author$project$Main$update = F2(
 					_Utils_update(
 						m,
 						{
-							currentFolder: $elm$core$Maybe$Just(folder),
-							folderChain: A2(
-								$elm$core$List$append,
-								m.folderChain,
-								_List_fromArray(
-									[folder]))
+							currentFolder: $elm$core$Maybe$Just(folder)
 						}),
 					$elm$core$Platform$Cmd$none);
 		}
 	});
-var $author$project$Main$Search = function (a) {
+var $author$project$Main2$Search = function (a) {
 	return {$: 'Search', a: a};
 };
 var $mdgriffith$elm_ui$Internal$Model$AlignX = function (a) {
@@ -5631,151 +5857,11 @@ var $mdgriffith$elm_ui$Internal$Model$getStyleName = function (style) {
 				$mdgriffith$elm_ui$Internal$Model$transformClass(x));
 	}
 };
-var $elm$core$Dict$Black = {$: 'Black'};
-var $elm$core$Dict$RBNode_elm_builtin = F5(
-	function (a, b, c, d, e) {
-		return {$: 'RBNode_elm_builtin', a: a, b: b, c: c, d: d, e: e};
-	});
-var $elm$core$Dict$Red = {$: 'Red'};
-var $elm$core$Dict$balance = F5(
-	function (color, key, value, left, right) {
-		if ((right.$ === 'RBNode_elm_builtin') && (right.a.$ === 'Red')) {
-			var _v1 = right.a;
-			var rK = right.b;
-			var rV = right.c;
-			var rLeft = right.d;
-			var rRight = right.e;
-			if ((left.$ === 'RBNode_elm_builtin') && (left.a.$ === 'Red')) {
-				var _v3 = left.a;
-				var lK = left.b;
-				var lV = left.c;
-				var lLeft = left.d;
-				var lRight = left.e;
-				return A5(
-					$elm$core$Dict$RBNode_elm_builtin,
-					$elm$core$Dict$Red,
-					key,
-					value,
-					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Black, lK, lV, lLeft, lRight),
-					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Black, rK, rV, rLeft, rRight));
-			} else {
-				return A5(
-					$elm$core$Dict$RBNode_elm_builtin,
-					color,
-					rK,
-					rV,
-					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Red, key, value, left, rLeft),
-					rRight);
-			}
-		} else {
-			if ((((left.$ === 'RBNode_elm_builtin') && (left.a.$ === 'Red')) && (left.d.$ === 'RBNode_elm_builtin')) && (left.d.a.$ === 'Red')) {
-				var _v5 = left.a;
-				var lK = left.b;
-				var lV = left.c;
-				var _v6 = left.d;
-				var _v7 = _v6.a;
-				var llK = _v6.b;
-				var llV = _v6.c;
-				var llLeft = _v6.d;
-				var llRight = _v6.e;
-				var lRight = left.e;
-				return A5(
-					$elm$core$Dict$RBNode_elm_builtin,
-					$elm$core$Dict$Red,
-					lK,
-					lV,
-					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Black, llK, llV, llLeft, llRight),
-					A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Black, key, value, lRight, right));
-			} else {
-				return A5($elm$core$Dict$RBNode_elm_builtin, color, key, value, left, right);
-			}
-		}
-	});
-var $elm$core$Basics$compare = _Utils_compare;
-var $elm$core$Dict$insertHelp = F3(
-	function (key, value, dict) {
-		if (dict.$ === 'RBEmpty_elm_builtin') {
-			return A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Red, key, value, $elm$core$Dict$RBEmpty_elm_builtin, $elm$core$Dict$RBEmpty_elm_builtin);
-		} else {
-			var nColor = dict.a;
-			var nKey = dict.b;
-			var nValue = dict.c;
-			var nLeft = dict.d;
-			var nRight = dict.e;
-			var _v1 = A2($elm$core$Basics$compare, key, nKey);
-			switch (_v1.$) {
-				case 'LT':
-					return A5(
-						$elm$core$Dict$balance,
-						nColor,
-						nKey,
-						nValue,
-						A3($elm$core$Dict$insertHelp, key, value, nLeft),
-						nRight);
-				case 'EQ':
-					return A5($elm$core$Dict$RBNode_elm_builtin, nColor, nKey, value, nLeft, nRight);
-				default:
-					return A5(
-						$elm$core$Dict$balance,
-						nColor,
-						nKey,
-						nValue,
-						nLeft,
-						A3($elm$core$Dict$insertHelp, key, value, nRight));
-			}
-		}
-	});
-var $elm$core$Dict$insert = F3(
-	function (key, value, dict) {
-		var _v0 = A3($elm$core$Dict$insertHelp, key, value, dict);
-		if ((_v0.$ === 'RBNode_elm_builtin') && (_v0.a.$ === 'Red')) {
-			var _v1 = _v0.a;
-			var k = _v0.b;
-			var v = _v0.c;
-			var l = _v0.d;
-			var r = _v0.e;
-			return A5($elm$core$Dict$RBNode_elm_builtin, $elm$core$Dict$Black, k, v, l, r);
-		} else {
-			var x = _v0;
-			return x;
-		}
-	});
 var $elm$core$Set$insert = F2(
 	function (key, _v0) {
 		var dict = _v0.a;
 		return $elm$core$Set$Set_elm_builtin(
 			A3($elm$core$Dict$insert, key, _Utils_Tuple0, dict));
-	});
-var $elm$core$Dict$get = F2(
-	function (targetKey, dict) {
-		get:
-		while (true) {
-			if (dict.$ === 'RBEmpty_elm_builtin') {
-				return $elm$core$Maybe$Nothing;
-			} else {
-				var key = dict.b;
-				var value = dict.c;
-				var left = dict.d;
-				var right = dict.e;
-				var _v1 = A2($elm$core$Basics$compare, targetKey, key);
-				switch (_v1.$) {
-					case 'LT':
-						var $temp$targetKey = targetKey,
-							$temp$dict = left;
-						targetKey = $temp$targetKey;
-						dict = $temp$dict;
-						continue get;
-					case 'EQ':
-						return $elm$core$Maybe$Just(value);
-					default:
-						var $temp$targetKey = targetKey,
-							$temp$dict = right;
-						targetKey = $temp$targetKey;
-						dict = $temp$dict;
-						continue get;
-				}
-			}
-		}
 	});
 var $elm$core$Dict$member = F2(
 	function (key, dict) {
@@ -11155,6 +11241,35 @@ var $mdgriffith$elm_ui$Element$column = F2(
 						attrs))),
 			$mdgriffith$elm_ui$Internal$Model$Unkeyed(children));
 	});
+var $author$project$Main2$createFolderChain = F4(
+	function (current, fileOrFolderMap, childrenMap, acc) {
+		createFolderChain:
+		while (true) {
+			var parents = A2($author$project$Main2$createParents, fileOrFolderMap, childrenMap);
+			var _v0 = A2(
+				$elm$core$Dict$get,
+				$author$project$Main2$fileOrFolderId(current),
+				parents);
+			if (_v0.$ === 'Just') {
+				var f = _v0.a;
+				var $temp$current = f,
+					$temp$fileOrFolderMap = fileOrFolderMap,
+					$temp$childrenMap = childrenMap,
+					$temp$acc = A2(
+					$elm$core$List$append,
+					_List_fromArray(
+						[f]),
+					acc);
+				current = $temp$current;
+				fileOrFolderMap = $temp$fileOrFolderMap;
+				childrenMap = $temp$childrenMap;
+				acc = $temp$acc;
+				continue createFolderChain;
+			} else {
+				return acc;
+			}
+		}
+	});
 var $elm$html$Html$node = $elm$virtual_dom$VirtualDom$node;
 var $lattyware$elm_fontawesome$FontAwesome$Styles$css = A3(
 	$elm$html$Html$node,
@@ -11471,7 +11586,8 @@ var $lattyware$elm_fontawesome$FontAwesome$Solid$levelUpAlt = A5(
 		['M313.553 119.669L209.587 7.666c-9.485-10.214-25.676-10.229-35.174 0L70.438 119.669C56.232 134.969 67.062 160 88.025 160H152v272H68.024a11.996 11.996 0 0 0-8.485 3.515l-56 56C-4.021 499.074 1.333 512 12.024 512H208c13.255 0 24-10.745 24-24V160h63.966c20.878 0 31.851-24.969 17.587-40.331z']));
 var $elm$virtual_dom$VirtualDom$style = _VirtualDom_style;
 var $elm$html$Html$Attributes$style = $elm$virtual_dom$VirtualDom$style;
-var $author$project$Main$lightGray = A2($elm$html$Html$Attributes$style, 'color', 'rgba(0, 0, 0, 0.26)');
+var $author$project$Main2$lightGray = A2($elm$html$Html$Attributes$style, 'color', 'rgba(0, 0, 0, 0.26)');
+var $elm$core$Debug$log = _Debug_log;
 var $mdgriffith$elm_ui$Internal$Model$Hover = {$: 'Hover'};
 var $mdgriffith$elm_ui$Internal$Model$PseudoSelector = F2(
 	function (a, b) {
@@ -12617,95 +12733,81 @@ var $mdgriffith$elm_ui$Element$Input$search = $mdgriffith$elm_ui$Element$Input$t
 		spellchecked: false,
 		type_: $mdgriffith$elm_ui$Element$Input$TextInputNode('search')
 	});
-var $author$project$Main$fileToFileOrFolder = function (_v0) {
-	var id = _v0.id;
-	var name = _v0.name;
-	var lastUpdated = _v0.lastUpdated;
-	var size = _v0.size;
-	return {files: _List_Nil, folders: _List_Nil, id: id, isFolder: false, lastUpdated: lastUpdated, name: name, size: size};
-};
-var $author$project$Main$folderToFileOrFolder = function (_v0) {
-	var id = _v0.a.id;
-	var name = _v0.a.name;
-	var lastUpdated = _v0.a.lastUpdated;
-	var size = _v0.a.size;
-	var folders = _v0.a.folders;
-	var files = _v0.a.files;
-	return {files: files, folders: folders, id: id, isFolder: true, lastUpdated: lastUpdated, name: name, size: size};
+var $author$project$Main2$fileOrFolderName = function (fileOrFolder) {
+	if (fileOrFolder.$ === 'File') {
+		var file = fileOrFolder.a;
+		return file.name;
+	} else {
+		var folder = fileOrFolder.a;
+		return folder.name;
+	}
 };
 var $elm$core$List$sortBy = _List_sortBy;
-var $author$project$Main$sortFilesAndFolders = F3(
-	function (files, folders, filter) {
-		var foldersFiltered = A2(
+var $author$project$Main2$sortFilesOrFolders = F2(
+	function (filesOrFolders, filter) {
+		var filteredList = A2(
 			$elm$core$List$filter,
-			function (_v0) {
-				var f = _v0.a;
-				return A2($elm$core$String$contains, filter, f.name);
+			function (fof) {
+				return A2(
+					$elm$core$String$contains,
+					filter,
+					$author$project$Main2$fileOrFolderName(fof));
 			},
-			folders);
-		var filesFiltered = A2(
-			$elm$core$List$filter,
-			function (f) {
-				return A2($elm$core$String$contains, filter, f.name);
-			},
-			files);
-		return A2(
-			$elm$core$List$sortBy,
-			function ($) {
-				return $.name;
-			},
-			A2(
-				$elm$core$List$append,
-				A2($elm$core$List$map, $author$project$Main$fileToFileOrFolder, filesFiltered),
-				A2($elm$core$List$map, $author$project$Main$folderToFileOrFolder, foldersFiltered)));
+			filesOrFolders);
+		return A2($elm$core$List$sortBy, $author$project$Main2$fileOrFolderName, filteredList);
 	});
-var $author$project$Main$ClickFolderChainElement = function (a) {
+var $author$project$Main2$ClickFolderChainElement = function (a) {
 	return {$: 'ClickFolderChainElement', a: a};
 };
 var $mdgriffith$elm_ui$Internal$Model$Bottom = {$: 'Bottom'};
 var $mdgriffith$elm_ui$Element$alignBottom = $mdgriffith$elm_ui$Internal$Model$AlignY($mdgriffith$elm_ui$Internal$Model$Bottom);
+var $mdgriffith$elm_ui$Element$none = $mdgriffith$elm_ui$Internal$Model$Empty;
 var $mdgriffith$elm_ui$Element$Font$size = function (i) {
 	return A2(
 		$mdgriffith$elm_ui$Internal$Model$StyleClass,
 		$mdgriffith$elm_ui$Internal$Flag$fontSize,
 		$mdgriffith$elm_ui$Internal$Model$FontSize(i));
 };
-var $author$project$Main$folderChainElement = function (_v0) {
-	var folder = _v0.a;
-	return A2(
-		$mdgriffith$elm_ui$Element$Input$button,
-		_List_fromArray(
-			[
-				$mdgriffith$elm_ui$Element$mouseOver(
-				_List_fromArray(
-					[
-						$mdgriffith$elm_ui$Element$Background$color(
-						A4($mdgriffith$elm_ui$Element$rgba255, 0, 0, 0, 0.1))
-					])),
-				$mdgriffith$elm_ui$Element$padding(10),
-				$mdgriffith$elm_ui$Element$Border$rounded(5)
-			]),
-		{
-			label: A2(
-				$mdgriffith$elm_ui$Element$row,
-				_List_fromArray(
-					[
-						$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill),
-						$mdgriffith$elm_ui$Element$alignLeft,
-						$mdgriffith$elm_ui$Element$spacing(5),
-						$mdgriffith$elm_ui$Element$alignBottom,
-						$mdgriffith$elm_ui$Element$height($mdgriffith$elm_ui$Element$fill),
-						$mdgriffith$elm_ui$Element$Font$size(14)
-					]),
-				_List_fromArray(
-					[
-						$mdgriffith$elm_ui$Element$text(folder.name),
-						$mdgriffith$elm_ui$Element$text('/')
-					])),
-			onPress: $elm$core$Maybe$Just(
-				$author$project$Main$ClickFolderChainElement(
-					$author$project$Main$Folder(folder)))
-		});
+var $author$project$Main2$folderChainElement = function (fileOrFolder) {
+	if (fileOrFolder.$ === 'Folder') {
+		var f = fileOrFolder.a;
+		return A2(
+			$mdgriffith$elm_ui$Element$Input$button,
+			_List_fromArray(
+				[
+					$mdgriffith$elm_ui$Element$mouseOver(
+					_List_fromArray(
+						[
+							$mdgriffith$elm_ui$Element$Background$color(
+							A4($mdgriffith$elm_ui$Element$rgba255, 0, 0, 0, 0.1))
+						])),
+					$mdgriffith$elm_ui$Element$padding(10),
+					$mdgriffith$elm_ui$Element$Border$rounded(5)
+				]),
+			{
+				label: A2(
+					$mdgriffith$elm_ui$Element$row,
+					_List_fromArray(
+						[
+							$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill),
+							$mdgriffith$elm_ui$Element$alignLeft,
+							$mdgriffith$elm_ui$Element$spacing(5),
+							$mdgriffith$elm_ui$Element$alignBottom,
+							$mdgriffith$elm_ui$Element$height($mdgriffith$elm_ui$Element$fill),
+							$mdgriffith$elm_ui$Element$Font$size(14)
+						]),
+					_List_fromArray(
+						[
+							$mdgriffith$elm_ui$Element$text(f.name),
+							$mdgriffith$elm_ui$Element$text('/')
+						])),
+				onPress: $elm$core$Maybe$Just(
+					$author$project$Main2$ClickFolderChainElement(
+						$author$project$Main2$Folder(f)))
+			});
+	} else {
+		return $mdgriffith$elm_ui$Element$none;
+	}
 };
 var $lattyware$elm_fontawesome$FontAwesome$Solid$folder = A5(
 	$lattyware$elm_fontawesome$FontAwesome$Icon$Icon,
@@ -13126,63 +13228,67 @@ var $lattyware$elm_fontawesome$FontAwesome$Icon$viewStyled = function (styles) {
 			$lattyware$elm_fontawesome$FontAwesome$Icon$view));
 };
 var $lattyware$elm_fontawesome$FontAwesome$Attributes$xs = $elm$svg$Svg$Attributes$class('fa-xs');
-var $author$project$Main$folderChainRoot = function (_v0) {
-	var rootFolder = _v0.a;
-	return A2(
-		$mdgriffith$elm_ui$Element$Input$button,
-		_List_fromArray(
-			[
-				$mdgriffith$elm_ui$Element$mouseOver(
-				_List_fromArray(
-					[
-						$mdgriffith$elm_ui$Element$Background$color(
-						A4($mdgriffith$elm_ui$Element$rgba255, 0, 0, 0, 0.1))
-					])),
-				$mdgriffith$elm_ui$Element$padding(10),
-				$mdgriffith$elm_ui$Element$Border$rounded(5)
-			]),
-		{
-			label: A2(
-				$mdgriffith$elm_ui$Element$row,
-				_List_fromArray(
-					[
-						$mdgriffith$elm_ui$Element$alignLeft,
-						$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill),
-						$mdgriffith$elm_ui$Element$centerY,
-						$mdgriffith$elm_ui$Element$spacing(20),
-						$mdgriffith$elm_ui$Element$height($mdgriffith$elm_ui$Element$fill)
-					]),
-				_List_fromArray(
-					[
-						$mdgriffith$elm_ui$Element$html(
-						A2(
-							$lattyware$elm_fontawesome$FontAwesome$Icon$viewStyled,
+var $author$project$Main2$folderChainRoot = function (fileOrFolder) {
+	if (fileOrFolder.$ === 'Folder') {
+		var f = fileOrFolder.a;
+		return A2(
+			$mdgriffith$elm_ui$Element$Input$button,
+			_List_fromArray(
+				[
+					$mdgriffith$elm_ui$Element$mouseOver(
+					_List_fromArray(
+						[
+							$mdgriffith$elm_ui$Element$Background$color(
+							A4($mdgriffith$elm_ui$Element$rgba255, 0, 0, 0, 0.1))
+						])),
+					$mdgriffith$elm_ui$Element$padding(10),
+					$mdgriffith$elm_ui$Element$Border$rounded(5)
+				]),
+			{
+				label: A2(
+					$mdgriffith$elm_ui$Element$row,
+					_List_fromArray(
+						[
+							$mdgriffith$elm_ui$Element$alignLeft,
+							$mdgriffith$elm_ui$Element$width($mdgriffith$elm_ui$Element$fill),
+							$mdgriffith$elm_ui$Element$centerY,
+							$mdgriffith$elm_ui$Element$spacing(20),
+							$mdgriffith$elm_ui$Element$height($mdgriffith$elm_ui$Element$fill)
+						]),
+					_List_fromArray(
+						[
+							$mdgriffith$elm_ui$Element$html(
+							A2(
+								$lattyware$elm_fontawesome$FontAwesome$Icon$viewStyled,
+								_List_fromArray(
+									[
+										A2($elm$html$Html$Attributes$style, 'margin-right', '10px'),
+										$lattyware$elm_fontawesome$FontAwesome$Attributes$xs
+									]),
+								$lattyware$elm_fontawesome$FontAwesome$Solid$folder)),
+							A2(
+							$mdgriffith$elm_ui$Element$el,
 							_List_fromArray(
 								[
-									A2($elm$html$Html$Attributes$style, 'margin-right', '10px'),
-									$lattyware$elm_fontawesome$FontAwesome$Attributes$xs
+									$mdgriffith$elm_ui$Element$Font$size(14)
 								]),
-							$lattyware$elm_fontawesome$FontAwesome$Solid$folder)),
-						A2(
-						$mdgriffith$elm_ui$Element$el,
-						_List_fromArray(
-							[
-								$mdgriffith$elm_ui$Element$Font$size(14)
-							]),
-						$mdgriffith$elm_ui$Element$text(rootFolder.name))
-					])),
-			onPress: $elm$core$Maybe$Just(
-				$author$project$Main$ClickFolderChainElement(
-					$author$project$Main$Folder(rootFolder)))
-		});
+							$mdgriffith$elm_ui$Element$text(f.name))
+						])),
+				onPress: $elm$core$Maybe$Just(
+					$author$project$Main2$ClickFolderChainElement(
+						$author$project$Main2$Folder(f)))
+			});
+	} else {
+		return $mdgriffith$elm_ui$Element$none;
+	}
 };
-var $author$project$Main$viewChain = function (folderChain) {
+var $author$project$Main2$viewChain = function (folderChain) {
 	if (folderChain.b) {
 		if (!folderChain.b.b) {
 			var head = folderChain.a;
 			return _List_fromArray(
 				[
-					$author$project$Main$folderChainRoot(head)
+					$author$project$Main2$folderChainRoot(head)
 				]);
 		} else {
 			var head = folderChain.a;
@@ -13191,18 +13297,18 @@ var $author$project$Main$viewChain = function (folderChain) {
 				$elm$core$List$append,
 				_List_fromArray(
 					[
-						$author$project$Main$folderChainRoot(head)
+						$author$project$Main2$folderChainRoot(head)
 					]),
-				A2($elm$core$List$map, $author$project$Main$folderChainElement, tail));
+				A2($elm$core$List$map, $author$project$Main2$folderChainElement, tail));
 		}
 	} else {
 		return _List_Nil;
 	}
 };
-var $author$project$Main$ClickFile = function (a) {
+var $author$project$Main2$ClickFile = function (a) {
 	return {$: 'ClickFile', a: a};
 };
-var $author$project$Main$ClickFolder = function (a) {
+var $author$project$Main2$ClickFolder = function (a) {
 	return {$: 'ClickFolder', a: a};
 };
 var $lattyware$elm_fontawesome$FontAwesome$Attributes$fa4x = $elm$svg$Svg$Attributes$class('fa-4x');
@@ -13214,27 +13320,34 @@ var $lattyware$elm_fontawesome$FontAwesome$Solid$file = A5(
 	512,
 	_List_fromArray(
 		['M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm160-14.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z']));
-var $author$project$Main$viewFileOrFolder = function (fileOrFolder) {
-	var _v0 = fileOrFolder.isFolder ? _Utils_Tuple2(
-		$mdgriffith$elm_ui$Element$html(
-			A2(
-				$lattyware$elm_fontawesome$FontAwesome$Icon$viewStyled,
-				_List_fromArray(
-					[$lattyware$elm_fontawesome$FontAwesome$Attributes$fa4x, $author$project$Main$lightGray]),
-				$lattyware$elm_fontawesome$FontAwesome$Solid$folder)),
-		$mdgriffith$elm_ui$Element$Events$onClick(
-			$author$project$Main$ClickFolder(
-				$author$project$Main$Folder(
-					{files: fileOrFolder.files, folders: fileOrFolder.folders, id: fileOrFolder.id, lastUpdated: fileOrFolder.lastUpdated, name: fileOrFolder.name, size: fileOrFolder.size})))) : _Utils_Tuple2(
-		$mdgriffith$elm_ui$Element$html(
-			A2(
-				$lattyware$elm_fontawesome$FontAwesome$Icon$viewStyled,
-				_List_fromArray(
-					[$lattyware$elm_fontawesome$FontAwesome$Attributes$fa4x, $author$project$Main$lightGray]),
-				$lattyware$elm_fontawesome$FontAwesome$Solid$file)),
-		$mdgriffith$elm_ui$Element$Events$onClick(
-			$author$project$Main$ClickFile(
-				{id: fileOrFolder.id, lastUpdated: fileOrFolder.lastUpdated, name: fileOrFolder.name, size: fileOrFolder.size})));
+var $author$project$Main2$viewFileOrFolder = function (fileOrFolder) {
+	var _v0 = function () {
+		if (fileOrFolder.$ === 'Folder') {
+			var f = fileOrFolder.a;
+			return _Utils_Tuple2(
+				$mdgriffith$elm_ui$Element$html(
+					A2(
+						$lattyware$elm_fontawesome$FontAwesome$Icon$viewStyled,
+						_List_fromArray(
+							[$lattyware$elm_fontawesome$FontAwesome$Attributes$fa4x, $author$project$Main2$lightGray]),
+						$lattyware$elm_fontawesome$FontAwesome$Solid$folder)),
+				$mdgriffith$elm_ui$Element$Events$onClick(
+					$author$project$Main2$ClickFolder(
+						$author$project$Main2$Folder(f))));
+		} else {
+			var f = fileOrFolder.a;
+			return _Utils_Tuple2(
+				$mdgriffith$elm_ui$Element$html(
+					A2(
+						$lattyware$elm_fontawesome$FontAwesome$Icon$viewStyled,
+						_List_fromArray(
+							[$lattyware$elm_fontawesome$FontAwesome$Attributes$fa4x, $author$project$Main2$lightGray]),
+						$lattyware$elm_fontawesome$FontAwesome$Solid$file)),
+				$mdgriffith$elm_ui$Element$Events$onClick(
+					$author$project$Main2$ClickFile(
+						$author$project$Main2$File(f))));
+		}
+	}();
 	var el = _v0.a;
 	var event = _v0.b;
 	return A2(
@@ -13255,7 +13368,8 @@ var $author$project$Main$viewFileOrFolder = function (fileOrFolder) {
 						$mdgriffith$elm_ui$Element$Font$size(12),
 						$mdgriffith$elm_ui$Element$padding(2)
 					]),
-				$mdgriffith$elm_ui$Element$text(fileOrFolder.name))
+				$mdgriffith$elm_ui$Element$text(
+					$author$project$Main2$fileOrFolderName(fileOrFolder)))
 			]));
 };
 var $mdgriffith$elm_ui$Internal$Model$Padding = F5(
@@ -13442,18 +13556,39 @@ var $mdgriffith$elm_ui$Element$wrappedRow = F2(
 			}
 		}
 	});
-var $author$project$Main$view = function (_v0) {
-	var folderChain = _v0.folderChain;
+var $author$project$Main2$view = function (_v0) {
+	var children = _v0.children;
 	var currentFolder = _v0.currentFolder;
 	var searchInput = _v0.searchInput;
-	var filesOrFolders = function () {
+	var filesAndFolders = _v0.filesAndFolders;
+	var _v1 = function () {
 		if (currentFolder.$ === 'Just') {
-			var folder = currentFolder.a.a;
-			return A3($author$project$Main$sortFilesAndFolders, folder.files, folder.folders, searchInput);
+			if (currentFolder.a.$ === 'Folder') {
+				var f = currentFolder.a.a;
+				var _v3 = A2($elm$core$Dict$get, f.id, children);
+				if (_v3.$ === 'Just') {
+					var l = _v3.a;
+					return _Utils_Tuple2(
+						A2($author$project$Main2$sortFilesOrFolders, l, searchInput),
+						A4(
+							$author$project$Main2$createFolderChain,
+							$author$project$Main2$Folder(f),
+							filesAndFolders,
+							children,
+							_List_Nil));
+				} else {
+					return _Utils_Tuple2(_List_Nil, _List_Nil);
+				}
+			} else {
+				return _Utils_Tuple2(_List_Nil, _List_Nil);
+			}
 		} else {
-			return _List_Nil;
+			return _Utils_Tuple2(_List_Nil, _List_Nil);
 		}
 	}();
+	var filesOrFolders = _v1.a;
+	var folderChain = _v1.b;
+	var a = A2($elm$core$Debug$log, '', folderChain);
 	return A2(
 		$elm$html$Html$div,
 		_List_Nil,
@@ -13509,7 +13644,7 @@ var $author$project$Main$view = function (_v0) {
 											A2(
 												$lattyware$elm_fontawesome$FontAwesome$Icon$viewStyled,
 												_List_fromArray(
-													[$author$project$Main$lightGray, $lattyware$elm_fontawesome$FontAwesome$Attributes$xs]),
+													[$author$project$Main2$lightGray, $lattyware$elm_fontawesome$FontAwesome$Attributes$xs]),
 												$lattyware$elm_fontawesome$FontAwesome$Solid$levelUpAlt)),
 										onPress: $elm$core$Maybe$Nothing
 									}),
@@ -13521,7 +13656,7 @@ var $author$project$Main$view = function (_v0) {
 											$mdgriffith$elm_ui$Element$centerY,
 											$mdgriffith$elm_ui$Element$height($mdgriffith$elm_ui$Element$fill)
 										]),
-									$author$project$Main$viewChain(folderChain))
+									$author$project$Main2$viewChain(folderChain))
 								])),
 							A2(
 							$mdgriffith$elm_ui$Element$row,
@@ -13544,7 +13679,7 @@ var $author$project$Main$view = function (_v0) {
 									{
 										label: $mdgriffith$elm_ui$Element$Input$labelHidden('Search'),
 										onChange: function (v) {
-											return $author$project$Main$Search(v);
+											return $author$project$Main2$Search(v);
 										},
 										placeholder: $elm$core$Maybe$Nothing,
 										text: searchInput
@@ -13582,25 +13717,25 @@ var $author$project$Main$view = function (_v0) {
 									$mdgriffith$elm_ui$Element$spacing(10),
 									$mdgriffith$elm_ui$Element$alignTop
 								]),
-							A2($elm$core$List$map, $author$project$Main$viewFileOrFolder, filesOrFolders))
+							A2($elm$core$List$map, $author$project$Main2$viewFileOrFolder, filesOrFolders))
 						])))
 			]));
 };
-var $author$project$Main$main = $elm$browser$Browser$element(
+var $author$project$Main2$main = $elm$browser$Browser$element(
 	{
 		init: function (_v0) {
-			return _Utils_Tuple2($author$project$Main$model, $elm$core$Platform$Cmd$none);
+			return _Utils_Tuple2($author$project$Main2$model, $elm$core$Platform$Cmd$none);
 		},
 		subscriptions: function (_v1) {
 			return $elm$core$Platform$Sub$none;
 		},
-		update: $author$project$Main$update,
-		view: $author$project$Main$view
+		update: $author$project$Main2$update,
+		view: $author$project$Main2$view
 	});
-_Platform_export({'Main':{'init':$author$project$Main$main(
+_Platform_export({'Main2':{'init':$author$project$Main2$main(
 	$elm$json$Json$Decode$succeed(_Utils_Tuple0))(0)}});}(this));
 
-  var app = Elm.Main.init({ node: document.getElementById("elm") });
+  var app = Elm.Main2.init({ node: document.getElementById("elm") });
 }
 catch (e)
 {

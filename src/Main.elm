@@ -16,6 +16,8 @@ import Html.Attributes exposing (style)
 import List exposing (tail)
 import Time
 import Dict exposing (Dict)
+import Array exposing (Array)
+import FontAwesome.Solid exposing (child)
 
 
 type alias File =
@@ -33,7 +35,6 @@ type Folder
         , size : Maybe Int
         , lastUpdated : Maybe Time.Posix
         , files : List File
-        , folders : List Folder
         }
 
 
@@ -47,34 +48,24 @@ type alias FileOrFolder =
     , isFolder : Bool
     }
 
+type alias FolderStructure = 
+    { children : Dict String (List Folder)
+    , parents : Dict String Folder
+    }
 
 type alias FileBrowserModel =
     { currentFolder : Maybe Folder -- This can be empty
     , data : Maybe Folder -- This can be useful to have a global folder state for static file structures
     , searchInput : String
     , folderChain : FolderChain
-    , folderStructure : Dict Folder (List Folder)
+    , folderStructure : FolderStructure
     }
 
-
-someFolder : Folder
-someFolder =
-    Folder
+rootFolder = Folder
         { id = "root"
         , name = "root"
         , size = Just 10
         , lastUpdated = Nothing
-        , folders =
-            [ Folder
-                { id = "folder1"
-                , name = "bsomefolder"
-                , size = Nothing
-                , lastUpdated = Nothing
-                , files =
-                    [ { id = "data4.csv", name = "data4.csv", lastUpdated = Nothing, size = Nothing } ]
-                , folders = []
-                }
-            ]
         , files =
             [ { id = "data1.csv", name = "data1.csv", lastUpdated = Nothing, size = Nothing }
             , { id = "data3.csv", name = "data3.csv", lastUpdated = Nothing, size = Nothing }
@@ -98,14 +89,34 @@ someFolder =
             ]
         }
 
+childFolder = 
+    Folder
+    { id = "folder1"
+    , name = "bsomefolder"
+    , size = Nothing
+    , lastUpdated = Nothing
+    , files =
+        [ { id = "data4.csv", name = "data4.csv", lastUpdated = Nothing, size = Nothing } ]
+    }
+
+theFolders : Array Folder 
+theFolders = 
+    Array.fromList 
+    [ rootFolder
+    , childFolder
+    ]   
+
+structure = 
+    { parents =  Dict.fromList [(rootFolder.id, [childFolder])]
+    , children = Dict.fromList [(childFolder.id, rootFolder)] }
 
 model : FileBrowserModel
 model =
-    { currentFolder = Just someFolder
+    { currentFolder = Array.get(0) theFolders
     , searchInput = ""
     , data = Nothing
-    , folderChain = [ someFolder ]
-    , folderStructure = Dict.empty
+    , folderChain = [ ]
+    , folderStructure = structure 
     }
 
 
@@ -207,9 +218,9 @@ folderChainElement (Folder folder) =
 
 
 folderChainRoot : Folder -> Element Msg
-folderChainRoot (Folder rootFolder) =
+folderChainRoot (Folder folder) =
     Input.button [ mouseOver [ color (Element.rgba255 0 0 0 0.1) ], padding 10, Border.rounded 5 ]
-        { onPress = Just (ClickFolderChainElement (Folder rootFolder))
+        { onPress = Just (ClickFolderChainElement (Folder folder))
         , label =
             row [ alignLeft, width fill, centerY, spacing 20, height fill ]
                 [ Element.html (Icon.viewStyled [ style "margin-right" "10px", FontAwesomeAttributes.xs ] folder)
@@ -261,13 +272,13 @@ sortFilesAndFolders files folders filter =
     List.sortBy .name (List.append (List.map fileToFileOrFolder filesFiltered) (List.map folderToFileOrFolder foldersFiltered))
 
 
-viewFileOrFolder : FileOrFolder -> Element Msg
-viewFileOrFolder fileOrFolder =
+viewFileOrFolder : Folder -> Element Msg
+viewFolder fileOrFolder =
     let
         (el, event) =
             if fileOrFolder.isFolder then
                 ( Element.html (Icon.viewStyled [ FontAwesomeAttributes.fa4x, lightGray ] folder)
-                , onClick (ClickFolder (Folder { id = fileOrFolder.id, name = fileOrFolder.name, lastUpdated = fileOrFolder.lastUpdated, files = fileOrFolder.files, folders = fileOrFolder.folders, size = fileOrFolder.size }))
+                , onClick (ClickFolder )
                 )
             else
                 ( Element.html (Icon.viewStyled [ FontAwesomeAttributes.fa4x, lightGray ] file)
