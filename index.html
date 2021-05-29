@@ -5195,6 +5195,8 @@ var $elm$core$Task$perform = F2(
 				A2($elm$core$Task$map, toMessage, task)));
 	});
 var $elm$browser$Browser$element = _Browser_element;
+var $elm$core$Dict$RBEmpty_elm_builtin = {$: 'RBEmpty_elm_builtin'};
+var $elm$core$Dict$empty = $elm$core$Dict$RBEmpty_elm_builtin;
 var $author$project$Main$Folder = function (a) {
 	return {$: 'Folder', a: a};
 };
@@ -5247,24 +5249,63 @@ var $author$project$Main$model = {
 	data: $elm$core$Maybe$Nothing,
 	folderChain: _List_fromArray(
 		[$author$project$Main$someFolder]),
+	folderStructure: $elm$core$Dict$empty,
 	searchInput: ''
 };
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
 var $elm$core$Platform$Sub$batch = _Platform_batch;
 var $elm$core$Platform$Sub$none = $elm$core$Platform$Sub$batch(_List_Nil);
-var $elm$core$Debug$log = _Debug_log;
+var $elm$core$List$append = F2(
+	function (xs, ys) {
+		if (!ys.b) {
+			return xs;
+		} else {
+			return A3($elm$core$List$foldr, $elm$core$List$cons, ys, xs);
+		}
+	});
 var $author$project$Main$update = F2(
 	function (msg, m) {
-		var v = msg.a;
-		return A2(
-			$elm$core$Debug$log,
-			v,
-			_Utils_Tuple2(
-				_Utils_update(
-					m,
-					{searchInput: v}),
-				$elm$core$Platform$Cmd$none));
+		switch (msg.$) {
+			case 'Search':
+				var v = msg.a;
+				return _Utils_Tuple2(
+					_Utils_update(
+						m,
+						{searchInput: v}),
+					$elm$core$Platform$Cmd$none);
+			case 'ClickFolder':
+				var folder = msg.a;
+				return _Utils_Tuple2(
+					_Utils_update(
+						m,
+						{
+							currentFolder: $elm$core$Maybe$Just(folder),
+							folderChain: A2(
+								$elm$core$List$append,
+								m.folderChain,
+								_List_fromArray(
+									[folder]))
+						}),
+					$elm$core$Platform$Cmd$none);
+			case 'ClickFile':
+				var file = msg.a;
+				return _Utils_Tuple2(m, $elm$core$Platform$Cmd$none);
+			default:
+				var folder = msg.a;
+				return _Utils_Tuple2(
+					_Utils_update(
+						m,
+						{
+							currentFolder: $elm$core$Maybe$Just(folder),
+							folderChain: A2(
+								$elm$core$List$append,
+								m.folderChain,
+								_List_fromArray(
+									[folder]))
+						}),
+					$elm$core$Platform$Cmd$none);
+		}
 	});
 var $author$project$Main$Search = function (a) {
 	return {$: 'Search', a: a};
@@ -5431,8 +5472,6 @@ var $elm$html$Html$div = _VirtualDom_node('div');
 var $elm$core$Set$Set_elm_builtin = function (a) {
 	return {$: 'Set_elm_builtin', a: a};
 };
-var $elm$core$Dict$RBEmpty_elm_builtin = {$: 'RBEmpty_elm_builtin'};
-var $elm$core$Dict$empty = $elm$core$Dict$RBEmpty_elm_builtin;
 var $elm$core$Set$empty = $elm$core$Set$Set_elm_builtin($elm$core$Dict$empty);
 var $mdgriffith$elm_ui$Internal$Model$lengthClassName = function (x) {
 	switch (x.$) {
@@ -6002,14 +6041,6 @@ var $mdgriffith$elm_ui$Internal$Style$CenterY = {$: 'CenterY'};
 var $mdgriffith$elm_ui$Internal$Style$Top = {$: 'Top'};
 var $mdgriffith$elm_ui$Internal$Style$alignments = _List_fromArray(
 	[$mdgriffith$elm_ui$Internal$Style$Top, $mdgriffith$elm_ui$Internal$Style$Bottom, $mdgriffith$elm_ui$Internal$Style$Right, $mdgriffith$elm_ui$Internal$Style$Left, $mdgriffith$elm_ui$Internal$Style$CenterX, $mdgriffith$elm_ui$Internal$Style$CenterY]);
-var $elm$core$List$append = F2(
-	function (xs, ys) {
-		if (!ys.b) {
-			return xs;
-		} else {
-			return A3($elm$core$List$foldr, $elm$core$List$cons, ys, xs);
-		}
-	});
 var $elm$core$List$concat = function (lists) {
 	return A3($elm$core$List$foldr, $elm$core$List$append, _List_Nil, lists);
 };
@@ -12628,6 +12659,9 @@ var $author$project$Main$sortFilesAndFolders = F3(
 				A2($elm$core$List$map, $author$project$Main$fileToFileOrFolder, filesFiltered),
 				A2($elm$core$List$map, $author$project$Main$folderToFileOrFolder, foldersFiltered)));
 	});
+var $author$project$Main$ClickFolderChainElement = function (a) {
+	return {$: 'ClickFolderChainElement', a: a};
+};
 var $mdgriffith$elm_ui$Internal$Model$Bottom = {$: 'Bottom'};
 var $mdgriffith$elm_ui$Element$alignBottom = $mdgriffith$elm_ui$Internal$Model$AlignY($mdgriffith$elm_ui$Internal$Model$Bottom);
 var $mdgriffith$elm_ui$Element$Font$size = function (i) {
@@ -12646,7 +12680,7 @@ var $author$project$Main$folderChainElement = function (_v0) {
 				_List_fromArray(
 					[
 						$mdgriffith$elm_ui$Element$Background$color(
-						A4($mdgriffith$elm_ui$Element$rgba255, 0, 0, 0, 0.10))
+						A4($mdgriffith$elm_ui$Element$rgba255, 0, 0, 0, 0.1))
 					])),
 				$mdgriffith$elm_ui$Element$padding(10),
 				$mdgriffith$elm_ui$Element$Border$rounded(5)
@@ -12668,7 +12702,9 @@ var $author$project$Main$folderChainElement = function (_v0) {
 						$mdgriffith$elm_ui$Element$text(folder.name),
 						$mdgriffith$elm_ui$Element$text('/')
 					])),
-			onPress: $elm$core$Maybe$Nothing
+			onPress: $elm$core$Maybe$Just(
+				$author$project$Main$ClickFolderChainElement(
+					$author$project$Main$Folder(folder)))
 		});
 };
 var $lattyware$elm_fontawesome$FontAwesome$Solid$folder = A5(
@@ -13100,7 +13136,7 @@ var $author$project$Main$folderChainRoot = function (_v0) {
 				_List_fromArray(
 					[
 						$mdgriffith$elm_ui$Element$Background$color(
-						A4($mdgriffith$elm_ui$Element$rgba255, 0, 0, 0, 0.10))
+						A4($mdgriffith$elm_ui$Element$rgba255, 0, 0, 0, 0.1))
 					])),
 				$mdgriffith$elm_ui$Element$padding(10),
 				$mdgriffith$elm_ui$Element$Border$rounded(5)
@@ -13135,7 +13171,9 @@ var $author$project$Main$folderChainRoot = function (_v0) {
 							]),
 						$mdgriffith$elm_ui$Element$text(rootFolder.name))
 					])),
-			onPress: $elm$core$Maybe$Nothing
+			onPress: $elm$core$Maybe$Just(
+				$author$project$Main$ClickFolderChainElement(
+					$author$project$Main$Folder(rootFolder)))
 		});
 };
 var $author$project$Main$viewChain = function (folderChain) {
@@ -13161,6 +13199,12 @@ var $author$project$Main$viewChain = function (folderChain) {
 		return _List_Nil;
 	}
 };
+var $author$project$Main$ClickFile = function (a) {
+	return {$: 'ClickFile', a: a};
+};
+var $author$project$Main$ClickFolder = function (a) {
+	return {$: 'ClickFolder', a: a};
+};
 var $lattyware$elm_fontawesome$FontAwesome$Attributes$fa4x = $elm$svg$Svg$Attributes$class('fa-4x');
 var $lattyware$elm_fontawesome$FontAwesome$Solid$file = A5(
 	$lattyware$elm_fontawesome$FontAwesome$Icon$Icon,
@@ -13171,23 +13215,35 @@ var $lattyware$elm_fontawesome$FontAwesome$Solid$file = A5(
 	_List_fromArray(
 		['M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm160-14.1v6.1H256V0h6.1c6.4 0 12.5 2.5 17 7l97.9 98c4.5 4.5 7 10.6 7 16.9z']));
 var $author$project$Main$viewFileOrFolder = function (fileOrFolder) {
-	var el = fileOrFolder.isFolder ? $mdgriffith$elm_ui$Element$html(
-		A2(
-			$lattyware$elm_fontawesome$FontAwesome$Icon$viewStyled,
-			_List_fromArray(
-				[$lattyware$elm_fontawesome$FontAwesome$Attributes$fa4x, $author$project$Main$lightGray]),
-			$lattyware$elm_fontawesome$FontAwesome$Solid$folder)) : $mdgriffith$elm_ui$Element$html(
-		A2(
-			$lattyware$elm_fontawesome$FontAwesome$Icon$viewStyled,
-			_List_fromArray(
-				[$lattyware$elm_fontawesome$FontAwesome$Attributes$fa4x, $author$project$Main$lightGray]),
-			$lattyware$elm_fontawesome$FontAwesome$Solid$file));
+	var _v0 = fileOrFolder.isFolder ? _Utils_Tuple2(
+		$mdgriffith$elm_ui$Element$html(
+			A2(
+				$lattyware$elm_fontawesome$FontAwesome$Icon$viewStyled,
+				_List_fromArray(
+					[$lattyware$elm_fontawesome$FontAwesome$Attributes$fa4x, $author$project$Main$lightGray]),
+				$lattyware$elm_fontawesome$FontAwesome$Solid$folder)),
+		$mdgriffith$elm_ui$Element$Events$onClick(
+			$author$project$Main$ClickFolder(
+				$author$project$Main$Folder(
+					{files: fileOrFolder.files, folders: fileOrFolder.folders, id: fileOrFolder.id, lastUpdated: fileOrFolder.lastUpdated, name: fileOrFolder.name, size: fileOrFolder.size})))) : _Utils_Tuple2(
+		$mdgriffith$elm_ui$Element$html(
+			A2(
+				$lattyware$elm_fontawesome$FontAwesome$Icon$viewStyled,
+				_List_fromArray(
+					[$lattyware$elm_fontawesome$FontAwesome$Attributes$fa4x, $author$project$Main$lightGray]),
+				$lattyware$elm_fontawesome$FontAwesome$Solid$file)),
+		$mdgriffith$elm_ui$Element$Events$onClick(
+			$author$project$Main$ClickFile(
+				{id: fileOrFolder.id, lastUpdated: fileOrFolder.lastUpdated, name: fileOrFolder.name, size: fileOrFolder.size})));
+	var el = _v0.a;
+	var event = _v0.b;
 	return A2(
 		$mdgriffith$elm_ui$Element$column,
 		_List_fromArray(
 			[
 				$mdgriffith$elm_ui$Element$padding(5),
-				$mdgriffith$elm_ui$Element$spacing(5)
+				$mdgriffith$elm_ui$Element$spacing(5),
+				event
 			]),
 		_List_fromArray(
 			[
@@ -13390,18 +13446,14 @@ var $author$project$Main$view = function (_v0) {
 	var folderChain = _v0.folderChain;
 	var currentFolder = _v0.currentFolder;
 	var searchInput = _v0.searchInput;
-	var _v1 = function () {
+	var filesOrFolders = function () {
 		if (currentFolder.$ === 'Just') {
 			var folder = currentFolder.a.a;
-			return _Utils_Tuple2(
-				$elm$core$List$length(folder.files),
-				A3($author$project$Main$sortFilesAndFolders, folder.files, folder.folders, searchInput));
+			return A3($author$project$Main$sortFilesAndFolders, folder.files, folder.folders, searchInput);
 		} else {
-			return _Utils_Tuple2(0, _List_Nil);
+			return _List_Nil;
 		}
 	}();
-	var numberOfItems = _v1.a;
-	var filesOrFolders = _v1.b;
 	return A2(
 		$elm$html$Html$div,
 		_List_Nil,
@@ -13446,7 +13498,7 @@ var $author$project$Main$view = function (_v0) {
 											_List_fromArray(
 												[
 													$mdgriffith$elm_ui$Element$Background$color(
-													A4($mdgriffith$elm_ui$Element$rgba255, 0, 0, 0, 0.10))
+													A4($mdgriffith$elm_ui$Element$rgba255, 0, 0, 0, 0.1))
 												])),
 											$mdgriffith$elm_ui$Element$padding(10),
 											$mdgriffith$elm_ui$Element$alignLeft,
@@ -13505,7 +13557,8 @@ var $author$project$Main$view = function (_v0) {
 											$mdgriffith$elm_ui$Element$fillPortion(1))
 										]),
 									$mdgriffith$elm_ui$Element$text(
-										$elm$core$String$fromInt(numberOfItems) + ' items')),
+										$elm$core$String$fromInt(
+											$elm$core$List$length(filesOrFolders)) + ' items')),
 									A2(
 									$mdgriffith$elm_ui$Element$el,
 									_List_fromArray(
