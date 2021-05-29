@@ -144,13 +144,13 @@ update msg m =
             ( { m | searchInput = v }, Cmd.none )
 
         ClickFolder folder ->
-            ( { m | currentFolder = Just folder, folderChain = List.append m.folderChain [folder] }, Cmd.none )
+            ( { m | currentFolder = Just folder, folderChain = m.folderChain ++ [folder] }, Cmd.none )
 
         ClickFile file ->
             ( m, Cmd.none )
 
         ClickFolderChainElement folder ->
-            ( { m | currentFolder = Just folder, folderChain = List.append m.folderChain [folder] }, Cmd.none )
+            ( { m | currentFolder = Just folder, folderChain = m.folderChain ++ [folder] }, Cmd.none )
 
 monthToString : Time.Month -> String
 monthToString month =
@@ -202,8 +202,7 @@ viewChain folderChain =
         [ head ] ->
             [ folderChainRoot head ]
 
-        head :: tail ->
-            List.append [ folderChainRoot head ] (List.map folderChainElement tail)
+        head :: tail -> folderChainRoot head :: (List.map folderChainElement tail)
 
         [] ->
             []
@@ -269,7 +268,7 @@ sortFilesAndFolders files folders filter =
         foldersFiltered =
             List.filter (\(Folder f) -> String.contains filter f.name) folders
     in
-    List.sortBy .name (List.append (List.map fileToFileOrFolder filesFiltered) (List.map folderToFileOrFolder foldersFiltered))
+    List.sortBy .name ((List.map fileToFileOrFolder filesFiltered) ++ (List.map folderToFileOrFolder foldersFiltered))
 
 
 viewFileOrFolder : Folder -> Element Msg

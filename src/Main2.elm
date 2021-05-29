@@ -16,6 +16,11 @@ import FontAwesome.Solid exposing (file, folder, levelUpAlt)
 import FontAwesome.Styles as FontAwesomeStyles
 import Html exposing (Attribute)
 import Html.Attributes exposing (style)
+import Element.Events exposing (onDoubleClick)
+import Element exposing (below)
+import ActionMenu exposing (ActionMenu, State(..))
+import ActionMenu exposing (actionMenuItem)
+import ActionMenu exposing (actionMenu)
 
 
 type alias Structure = 
@@ -90,7 +95,7 @@ createParents allFiles childrenDict =
                 Nothing -> Dict.empty
             
     in
-    mergeDicts (Dict.foldl (\k v acc -> List.append acc [(createParentsForAPair k v)]) [] childrenDict)
+    mergeDicts (Dict.foldl (\k v acc -> acc ++ [(createParentsForAPair k v)]) [] childrenDict)
 
 
 theParents : Dict String FileOrFolder
@@ -104,6 +109,7 @@ type alias Model =
     , children : Dict String (List FileOrFolder) --> File should'nt have children but don't know how to best design the data structure yet
     , parents : Dict String FileOrFolder 
     , searchInput : String
+    , actionMenus : ActionMenu Msg
     }
 
 type Msg
@@ -111,8 +117,19 @@ type Msg
     | ClickFolder FileOrFolder
     | ClickFile FileOrFolder
     | ClickFolderChainElement FileOrFolder
+    | ClickMe
+    | ToggleDropdown State
 
 
+-- baseActions : ActionMenu
+-- baseActions = 
+--     { icon = Element.row [] [Element.text "Actions", Element.html (Icon.viewStyled [ lightGray, FontAwesomeAttributes.xs ] levelUpAlt)]
+--     }
+
+-- base2Actions : ActionMenu
+-- base2Actions = 
+--     { icon = Element.row [] [Element.text "Actions2", Element.html (Icon.viewStyled [ lightGray, FontAwesomeAttributes.xs ] levelUpAlt)]
+--     }
 model : Model 
 model = 
     { filesAndFolders = theFilesAndFolders
@@ -120,7 +137,13 @@ model =
     , children = theChildren
     , parents = theParents
     , searchInput = ""
-     }
+    , actionMenus = 
+        { icon = levelUpAlt 
+        , name = "Sample Menu"
+        , elements = [actionMenuItem "Click me" [ onClick ClickMe ]]
+        , state = ActionMenu.Closed 
+        , toggleMsg = ToggleDropdown }
+    }
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg m =
@@ -137,6 +160,24 @@ update msg m =
         ClickFolderChainElement folder ->
             ( { m | currentFolder = Just folder }, Cmd.none )
 
+        ClickMe ->
+            Debug.log "clickme" (m, Cmd.none)
+
+        ToggleDropdown state -> 
+            let
+                a = Debug.log (Debug.toString state) 0
+                actions = m.actionMenus
+                newActions = { actions | state = state }
+            in
+            ( { m | actionMenus = newActions }, Cmd.none)
+
+
+-- subscriptions : Model -> Sub Msg
+-- subscriptions m =
+--     Sub.batch
+--         [ ActionMenu.subscriptions m.actionMenus.state ToggleDropdown
+--         ]
+        
 main : Program () Model Msg
 main =
     Browser.element
@@ -163,8 +204,11 @@ lightGray : Attribute Msg
 lightGray =
     style "color" "rgba(0, 0, 0, 0.26)"
 
+displayMenu : Element Msg -> Element Msg
+displayMenu base = Element.el [ below (column [] [Element.text "a", Element.text "b", Element.text "c"])] base
+
 view : Model -> Html Msg
-view { children, currentFolder, searchInput, filesAndFolders } =
+view { children, currentFolder, searchInput, filesAndFolders, actionMenus } =
     let
         (filesOrFolders, folderChain) =
             case currentFolder of
@@ -175,7 +219,6 @@ view { children, currentFolder, searchInput, filesAndFolders } =
                 Just (File _) -> ([], [])
                 Nothing -> ([], [])
         
-        a = Debug.log "" folderChain
     in
     Html.div []
         [ FontAwesomeStyles.css
@@ -196,7 +239,7 @@ view { children, currentFolder, searchInput, filesAndFolders } =
                         , label = Input.labelHidden "Search"
                         }
                     , Element.el [ width (fillPortion 1) ] (Element.text (String.fromInt (List.length filesOrFolders) ++ " items"))
-                    , Element.el [ width (fillPortion 1) ] (Element.el [ alignRight ] (Element.text "Action menu"))
+                    , Element.row [ width (fillPortion 2) ] [actionMenu actionMenus] 
                     ]
                 , wrappedRow [ width fill, height (fillPortion 8), spacing 10, alignTop ] (List.map viewFileOrFolder filesOrFolders)
                 ]
@@ -210,8 +253,7 @@ viewChain folderChain =
         [ head ] ->
             [ folderChainRoot head ]
 
-        head :: tail ->
-            List.append [ folderChainRoot head ] (List.map folderChainElement tail)
+        head :: tail -> folderChainRoot head :: (List.map folderChainElement tail)
 
         [] ->
             []
@@ -249,10 +291,10 @@ viewFileOrFolder fileOrFolder =
             case fileOrFolder of
                 (Folder f) -> 
                     ( Element.html (Icon.viewStyled [ FontAwesomeAttributes.fa4x, lightGray ] folder)
-                    , onClick (ClickFolder (Folder f)))
+                    , onDoubleClick (ClickFolder (Folder f)))
                 (File f) -> 
                     ( Element.html (Icon.viewStyled [ FontAwesomeAttributes.fa4x, lightGray ] file)
-                    , onClick (ClickFile (File f)))
+                    , onDoubleClick (ClickFile (File f)))
     in
     column [ padding 5, spacing 5, event ]
         [ el
@@ -266,5 +308,5 @@ createFolderChain current fileOrFolderMap childrenMap acc =
         parents = createParents fileOrFolderMap childrenMap
     in
     case Dict.get (fileOrFolderId current) parents of 
-        Just f -> createFolderChain f fileOrFolderMap childrenMap (List.append [f] acc)
+        Just f -> createFolderChain f fileOrFolderMap childrenMap (f :: acc)
         Nothing -> acc
