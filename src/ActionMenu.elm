@@ -16,8 +16,10 @@ import Element exposing (alignLeft)
 import Element exposing (fill)
 import Element exposing (width)
 import Element exposing (spacing)
+import Browser.Events
+import Json.Decode as Json
 
-type State = Opened | Closed
+type State = Opened | Closed | ListenClicks
 
 type alias ActionMenu msg =
     { icon : Icon 
@@ -37,7 +39,11 @@ actionMenu { icon, name, elements, state, toggleMsg } =
                 (column 
                     [ Border.rounded 5, Element.htmlAttribute (style "align-self" "end")
                     , Border.shadow { offset = (2, 2), size = 1, blur = 1, color = (Element.rgba255 0 0 0 0.1) }] (List.map (\(ActionMenuItem item) -> item) elements)) ]
-            Closed -> []
+            ListenClicks -> [below 
+                (column 
+                    [ Border.rounded 5, Element.htmlAttribute (style "align-self" "end")
+                    , Border.shadow { offset = (2, 2), size = 1, blur = 1, color = (Element.rgba255 0 0 0 0.1) }] (List.map (\(ActionMenuItem item) -> item) elements)) ]
+            _ -> []
         htmlElements = case name of
             Just n -> [Element.el [Font.size 14] (Element.text n), Element.html (Icon.viewStyled [ FontAwesomeAttributes.xs, style "margin-left" "10px"] icon) ]
             Nothing -> [ Element.html (Icon.viewStyled [ FontAwesomeAttributes.xs] icon) ]
@@ -56,27 +62,30 @@ actionMenuItem : String -> List (Attribute msg) -> ActionMenuItem msg
 actionMenuItem name attributes =
     el (attributes ++ [ spacing 5, mouseOver [ color (Element.rgba255 0 0 0 0.05) ], width fill ]) (Element.el [ padding 10] (text name)) |> ActionMenuItem
 
--- subscriptions : State -> (State -> msg) -> Sub msg
--- subscriptions state toMsg =
---     let
---         a = Debug.log "test" 1    
---     in
---     case state of
---         Opened ->
---             Browser.Events.onAnimationFrame
---                 (\_ -> toMsg <| Waiting)
+subscriptions : State -> (State -> msg) -> Sub msg
+subscriptions state toMsg =
+    let
+        a = Debug.log "test" (toMsg state)
+    in
+    case state of
+        Opened ->
+            Browser.Events.onAnimationFrame
+                (\_ -> toMsg <| ListenClicks)
 
---         Waiting ->
---             Browser.Events.onClick
---                 (Json.succeed <| toMsg <| Closed)
+        ListenClicks ->
+            Browser.Events.onClick
+                (Json.succeed <| toMsg <| Closed)
 
---         Closed ->
---             Sub.none
+        Closed ->
+            Sub.none
 
 nextStatus : State -> State
 nextStatus status =
     case status of
         Opened ->
+            Closed
+
+        ListenClicks ->
             Closed
 
         Closed ->

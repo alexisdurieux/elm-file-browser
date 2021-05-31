@@ -200,13 +200,15 @@ main : Program () Model Msg
 main =
     Browser.element
         { init = \_ -> ( model, Cmd.none )
-        , subscriptions = \_ -> Sub.none
+        , subscriptions = 
+            \m -> 
+            Sub.batch (List.map (\am -> ActionMenu.subscriptions am.state am.toggleMsg) (Dict.values m.actionMenus))
         , update = update
         , view = view
         }
 
 fileOrFolderName : FileOrFolder -> String
-fileOrFolderName fileOrFolder =
+fileOrFolderName fileOrFolder = 
     case fileOrFolder of 
         (File file) -> file.name
         (Folder folder) -> folder.name
