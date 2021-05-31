@@ -109,7 +109,7 @@ type alias Model =
     , children : Dict String (List FileOrFolder) --> File should'nt have children but don't know how to best design the data structure yet
     , parents : Dict String FileOrFolder 
     , searchInput : String
-    , actionMenus : ActionMenu Msg
+    , actionMenus : Dict String (ActionMenu Msg)
     }
 
 type Msg
@@ -119,6 +119,7 @@ type Msg
     | ClickFolderChainElement FileOrFolder
     | ClickMe
     | ToggleDropdown State
+    | ToggleDropdown2 State
 
 
 -- baseActions : ActionMenu
@@ -138,11 +139,23 @@ model =
     , parents = theParents
     , searchInput = ""
     , actionMenus = 
-        { icon = levelUpAlt 
-        , name = "Sample Menu"
-        , elements = [actionMenuItem "Click me" [ onClick ClickMe ]]
-        , state = ActionMenu.Closed 
-        , toggleMsg = ToggleDropdown }
+        Dict.fromList
+        [
+            ("sample-menu", 
+            { icon = levelUpAlt 
+            , name = Just "Sample Menu"
+            , elements = [actionMenuItem "Click me" [ onClick ClickMe ]]
+            , state = ActionMenu.Closed 
+            , toggleMsg = ToggleDropdown }
+            )
+        ,   ("sample-menu2", 
+            { icon = levelUpAlt 
+            , name = Nothing
+            , elements = [actionMenuItem "Click me 2" [ onClick ClickMe ], actionMenuItem "This is another long test" [ onClick ClickMe ]]
+            , state = ActionMenu.Closed 
+            , toggleMsg = ToggleDropdown2 }
+            )
+        ]
     }
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -165,11 +178,16 @@ update msg m =
 
         ToggleDropdown state -> 
             let
-                a = Debug.log (Debug.toString state) 0
-                actions = m.actionMenus
-                newActions = { actions | state = state }
+                newActions = Dict.update "sample-menu" (Maybe.map (\a -> { a | state = state })) m.actionMenus
+            
             in
-            ( { m | actionMenus = newActions }, Cmd.none)
+            ( {  m | actionMenus = newActions }, Cmd.none)
+        ToggleDropdown2 state -> 
+            let
+                newActions = Dict.update "sample-menu2" (Maybe.map (\a -> { a | state = state })) m.actionMenus
+            
+            in
+            ( {  m | actionMenus = newActions }, Cmd.none)
 
 
 -- subscriptions : Model -> Sub Msg
@@ -239,7 +257,7 @@ view { children, currentFolder, searchInput, filesAndFolders, actionMenus } =
                         , label = Input.labelHidden "Search"
                         }
                     , Element.el [ width (fillPortion 1) ] (Element.text (String.fromInt (List.length filesOrFolders) ++ " items"))
-                    , Element.row [ width (fillPortion 2) ] [actionMenu actionMenus] 
+                    , Element.row [ width (fillPortion 2) ] (Dict.foldl (\_ v acc -> actionMenu v :: acc) [] actionMenus)
                     ]
                 , wrappedRow [ width fill, height (fillPortion 8), spacing 10, alignTop ] (List.map viewFileOrFolder filesOrFolders)
                 ]

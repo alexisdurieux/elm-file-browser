@@ -2,17 +2,26 @@ module ActionMenu exposing (..)
 
 import FontAwesome.Icon as Icon exposing (Icon)
 import FontAwesome.Attributes as FontAwesomeAttributes
-import Element exposing (Element, below, column, el, row, text)
+import Element exposing (Element, below, column, el, row, text, mouseOver, padding)
 import Element exposing (Attribute)
+import Element.Border as Border
 import Element.Events exposing (onClick)
-import Browser.Events
-import Json.Decode as Json
+import Element.Font as Font
+import Element exposing (spacingXY)
+import Html.Attributes exposing (style)
+import Element.Input as Input
+import Element.Background exposing (color)
+import Element exposing (alignRight)
+import Element exposing (alignLeft)
+import Element exposing (fill)
+import Element exposing (width)
+import Element exposing (spacing)
 
 type State = Opened | Closed
 
 type alias ActionMenu msg =
     { icon : Icon 
-    , name : String
+    , name : Maybe String
     , elements : List (ActionMenuItem msg)
     , state : State
     , toggleMsg : State -> msg 
@@ -24,16 +33,28 @@ actionMenu : ActionMenu msg -> Element msg
 actionMenu { icon, name, elements, state, toggleMsg } = 
     let
         attributes = case state of 
-            Opened -> [below (column [] (List.map (\(ActionMenuItem item) -> item) elements)) ]
+            Opened -> [below 
+                (column 
+                    [ Border.rounded 5, Element.htmlAttribute (style "align-self" "end")
+                    , Border.shadow { offset = (2, 2), size = 1, blur = 1, color = (Element.rgba255 0 0 0 0.1) }] (List.map (\(ActionMenuItem item) -> item) elements)) ]
             Closed -> []
+        htmlElements = case name of
+            Just n -> [Element.el [Font.size 14] (Element.text n), Element.html (Icon.viewStyled [ FontAwesomeAttributes.xs, style "margin-left" "10px"] icon) ]
+            Nothing -> [ Element.html (Icon.viewStyled [ FontAwesomeAttributes.xs] icon) ]
     in
-    el 
-        (attributes ++ [ onClick (toggleMsg (nextStatus state)) ])
-        (el [] (row [] [Element.text name, Element.html (Icon.viewStyled [ FontAwesomeAttributes.xs ] icon) ]))
+    Input.button [ alignRight ]
+    { onPress = Nothing
+    , label = 
+        (el 
+            (attributes ++ [ onClick (toggleMsg (nextStatus state)), mouseOver [ color (Element.rgba255 0 0 0 0.1) ], padding 10, Border.rounded 5 ])
+            (el [] (row [] htmlElements))
+        )
+    }
+    
 
 actionMenuItem : String -> List (Attribute msg) -> ActionMenuItem msg
 actionMenuItem name attributes =
-    el attributes (text name) |> ActionMenuItem
+    el (attributes ++ [ spacing 5, mouseOver [ color (Element.rgba255 0 0 0 0.05) ], width fill ]) (Element.el [ padding 10] (text name)) |> ActionMenuItem
 
 -- subscriptions : State -> (State -> msg) -> Sub msg
 -- subscriptions state toMsg =
