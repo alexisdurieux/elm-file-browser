@@ -5198,6 +5198,7 @@ var $elm$core$Task$perform = F2(
 var $elm$browser$Browser$element = _Browser_element;
 var $author$project$Main2$ClickMe = {$: 'ClickMe'};
 var $author$project$ActionMenu$Closed = {$: 'Closed'};
+var $author$project$Main2$KissSophie = {$: 'KissSophie'};
 var $author$project$Main2$ToggleDropdown = function (a) {
 	return {$: 'ToggleDropdown', a: a};
 };
@@ -11320,14 +11321,14 @@ var $author$project$Main2$model = {
 								])),
 							A2(
 							$author$project$ActionMenu$actionMenuItem,
-							'This is another long test',
+							'Kiss Sophie',
 							_List_fromArray(
 								[
-									$mdgriffith$elm_ui$Element$Events$onClick($author$project$Main2$ClickMe)
+									$mdgriffith$elm_ui$Element$Events$onClick($author$project$Main2$KissSophie)
 								]))
 						]),
 					icon: $lattyware$elm_fontawesome$FontAwesome$Solid$levelUpAlt,
-					name: $elm$core$Maybe$Nothing,
+					name: $elm$core$Maybe$Just('Sophie'),
 					state: $author$project$ActionMenu$Closed,
 					toggleMsg: $author$project$Main2$ToggleDropdown2
 				})
@@ -12147,7 +12148,7 @@ var $author$project$Main2$update = F2(
 						m,
 						{actionMenus: newActions}),
 					$elm$core$Platform$Cmd$none);
-			default:
+			case 'ToggleDropdown2':
 				var state = msg.a;
 				var newActions = A3(
 					$elm$core$Dict$update,
@@ -12163,6 +12164,49 @@ var $author$project$Main2$update = F2(
 					_Utils_update(
 						m,
 						{actionMenus: newActions}),
+					$elm$core$Platform$Cmd$none);
+			default:
+				var newFiles = A3(
+					$elm$core$Dict$insert,
+					'<3',
+					$author$project$Main2$File(
+						{id: '<3', lastUpdated: $elm$core$Maybe$Nothing, name: 'I love you sophie', size: $elm$core$Maybe$Nothing}),
+					m.filesAndFolders);
+				var newChildren = function () {
+					var _v1 = _Utils_Tuple2(
+						m.currentFolder,
+						A2($elm$core$Dict$get, '<3', newFiles));
+					if ((((_v1.a.$ === 'Just') && (_v1.a.a.$ === 'Folder')) && (_v1.b.$ === 'Just')) && (_v1.b.a.$ === 'File')) {
+						var fo = _v1.a.a.a;
+						var fi = _v1.b.a.a;
+						return A3(
+							$elm$core$Dict$update,
+							fo.id,
+							function (a) {
+								if (a.$ === 'Just') {
+									var l = a.a;
+									return $elm$core$Maybe$Just(
+										A2(
+											$elm$core$List$cons,
+											$author$project$Main2$File(fi),
+											l));
+								} else {
+									return $elm$core$Maybe$Just(
+										_List_fromArray(
+											[
+												$author$project$Main2$File(fi)
+											]));
+								}
+							},
+							m.children);
+					} else {
+						return m.children;
+					}
+				}();
+				return _Utils_Tuple2(
+					_Utils_update(
+						m,
+						{children: newChildren, filesAndFolders: newFiles}),
 					$elm$core$Platform$Cmd$none);
 		}
 	});
@@ -14357,7 +14401,7 @@ var $author$project$Main2$ClickFile = function (a) {
 var $author$project$Main2$ClickFolder = function (a) {
 	return {$: 'ClickFolder', a: a};
 };
-var $lattyware$elm_fontawesome$FontAwesome$Attributes$fa4x = $elm$svg$Svg$Attributes$class('fa-4x');
+var $lattyware$elm_fontawesome$FontAwesome$Attributes$fa3x = $elm$svg$Svg$Attributes$class('fa-3x');
 var $lattyware$elm_fontawesome$FontAwesome$Solid$file = A5(
 	$lattyware$elm_fontawesome$FontAwesome$Icon$Icon,
 	'fas',
@@ -14382,7 +14426,7 @@ var $author$project$Main2$viewFileOrFolder = function (fileOrFolder) {
 					A2(
 						$lattyware$elm_fontawesome$FontAwesome$Icon$viewStyled,
 						_List_fromArray(
-							[$lattyware$elm_fontawesome$FontAwesome$Attributes$fa4x, $author$project$Main2$lightGray]),
+							[$lattyware$elm_fontawesome$FontAwesome$Attributes$fa3x, $author$project$Main2$lightGray]),
 						$lattyware$elm_fontawesome$FontAwesome$Solid$folder)),
 				$mdgriffith$elm_ui$Element$Events$onDoubleClick(
 					$author$project$Main2$ClickFolder(
@@ -14394,7 +14438,7 @@ var $author$project$Main2$viewFileOrFolder = function (fileOrFolder) {
 					A2(
 						$lattyware$elm_fontawesome$FontAwesome$Icon$viewStyled,
 						_List_fromArray(
-							[$lattyware$elm_fontawesome$FontAwesome$Attributes$fa4x, $author$project$Main2$lightGray]),
+							[$lattyware$elm_fontawesome$FontAwesome$Attributes$fa3x, $author$project$Main2$lightGray]),
 						$lattyware$elm_fontawesome$FontAwesome$Solid$file)),
 				$mdgriffith$elm_ui$Element$Events$onDoubleClick(
 					$author$project$Main2$ClickFile(
@@ -14409,7 +14453,8 @@ var $author$project$Main2$viewFileOrFolder = function (fileOrFolder) {
 			[
 				$mdgriffith$elm_ui$Element$padding(5),
 				$mdgriffith$elm_ui$Element$spacing(5),
-				event
+				event,
+				$mdgriffith$elm_ui$Element$alignTop
 			]),
 		_List_fromArray(
 			[

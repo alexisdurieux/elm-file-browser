@@ -120,6 +120,7 @@ type Msg
     | ClickMe
     | ToggleDropdown State
     | ToggleDropdown2 State
+    | KissSophie
 
 
 -- baseActions : ActionMenu
@@ -150,8 +151,8 @@ model =
             )
         ,   ("sample-menu2", 
             { icon = levelUpAlt 
-            , name = Nothing
-            , elements = [actionMenuItem "Click me 2" [ onClick ClickMe ], actionMenuItem "This is another long test" [ onClick ClickMe ]]
+            , name = Just"Sophie"
+            , elements = [actionMenuItem "Click me 2" [ onClick ClickMe ], actionMenuItem "Kiss Sophie" [ onClick KissSophie ]]
             , state = ActionMenu.Closed 
             , toggleMsg = ToggleDropdown2 }
             )
@@ -189,6 +190,23 @@ update msg m =
             in
             ( {  m | actionMenus = newActions }, Cmd.none)
 
+        KissSophie ->
+            let
+                newFiles  = Dict.insert "<3" (File { id = "<3", name = "I love you sophie", lastUpdated = Nothing, size = Nothing }) m.filesAndFolders
+                newChildren = case (m.currentFolder, Dict.get "<3" newFiles) of 
+                    (Just (Folder fo), Just (File fi)) ->  
+                        (Dict.update 
+                            fo.id
+                            (\a -> case a of 
+                                Just l ->  Just (File fi :: l)
+                                Nothing -> Just [File fi]
+                            )
+                            m.children
+                        )
+                    _ -> m.children
+            in
+            ({ m | filesAndFolders = newFiles, children = newChildren }  , Cmd.none)
+            
 
 -- subscriptions : Model -> Sub Msg
 -- subscriptions m =
@@ -310,13 +328,13 @@ viewFileOrFolder fileOrFolder =
         (el, event) =
             case fileOrFolder of
                 (Folder f) -> 
-                    ( Element.html (Icon.viewStyled [ FontAwesomeAttributes.fa4x, lightGray ] folder)
+                    ( Element.html (Icon.viewStyled [ FontAwesomeAttributes.fa3x, lightGray ] folder)
                     , onDoubleClick (ClickFolder (Folder f)))
                 (File f) -> 
-                    ( Element.html (Icon.viewStyled [ FontAwesomeAttributes.fa4x, lightGray ] file)
+                    ( Element.html (Icon.viewStyled [ FontAwesomeAttributes.fa3x, lightGray ] file)
                     , onDoubleClick (ClickFile (File f)))
     in
-    column [ padding 5, spacing 5, event ]
+    column [ padding 5, spacing 5, event, alignTop ]
         [ el
         , Element.el [ Font.size 12, padding 2 ] (Element.text (fileOrFolderName fileOrFolder))
         ]
