@@ -21,18 +21,9 @@ import Element exposing (below)
 import ActionMenu exposing (ActionMenu, State(..))
 import ActionMenu exposing (actionMenuItem)
 import ActionMenu exposing (actionMenu)
+import FileBrowser exposing (FileOrFolder(..), createParents, fileOrFolderId)
 
 
-type alias Structure = 
-    { id : String
-    , name : String
-    , lastUpdated : Maybe Time.Posix
-    , size : Maybe Int
-    }
-
-type FileOrFolder 
-    = File Structure 
-    | Folder Structure
 
 {-
 Sample folder structure
@@ -74,40 +65,12 @@ theChildren = Dict.fromList
     , ( "b", [file3] )
     ]
 
-mergeDicts : List (Dict String FileOrFolder) -> Dict String FileOrFolder
-mergeDicts dicts = List.foldl Dict.union Dict.empty dicts
-
-fileOrFolderId : FileOrFolder -> String
-fileOrFolderId fileOrFolder =
-    case fileOrFolder of 
-        (File file) -> file.id
-        (Folder folder) -> folder.id
-
-
-createParents : Dict String FileOrFolder -> Dict String (List FileOrFolder) -> Dict String FileOrFolder
-createParents allFiles childrenDict =
-    let
-        createParentsForAPair : String -> List FileOrFolder -> Dict String FileOrFolder
-        createParentsForAPair parentKey childrenList =
-            case (Dict.get parentKey allFiles) of
-                Just fileOrFolder ->
-                    List.foldl (\fof acc-> Dict.insert (fileOrFolderId fof) fileOrFolder acc) Dict.empty childrenList
-                Nothing -> Dict.empty
-            
-    in
-    mergeDicts (Dict.foldl (\k v acc -> acc ++ [(createParentsForAPair k v)]) [] childrenDict)
-
-
-theParents : Dict String FileOrFolder
-theParents = 
-    createParents theFilesAndFolders theChildren
 
 -- Both filesAndFolders need to be served. Parents can be updated on the fly
 type alias Model = 
     { filesAndFolders : Dict String FileOrFolder
     , currentFolder : Maybe FileOrFolder 
     , children : Dict String (List FileOrFolder) --> File should'nt have children but don't know how to best design the data structure yet
-    , parents : Dict String FileOrFolder 
     , searchInput : String
     , actionMenus : Dict String (ActionMenu Msg)
     }
@@ -137,7 +100,6 @@ model =
     { filesAndFolders = theFilesAndFolders
     , currentFolder = Just folderA
     , children = theChildren
-    , parents = theParents
     , searchInput = ""
     , actionMenus = 
         Dict.fromList
@@ -205,15 +167,9 @@ update msg m =
                         )
                     _ -> m.children
             in
-            ({ m | filesAndFolders = newFiles, children = newChildren }  , Cmd.none)
+            ({ m | filesAndFolders = newFiles, children = newChildren }, Cmd.none)
             
 
--- subscriptions : Model -> Sub Msg
--- subscriptions m =
---     Sub.batch
---         [ ActionMenu.subscriptions m.actionMenus.state ToggleDropdown
---         ]
-        
 main : Program () Model Msg
 main =
     Browser.element
