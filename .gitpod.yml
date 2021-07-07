@@ -1,0 +1,8 @@
+image:
+  file: .gitpod.Dockerfile
+tasks:
+ - init: elm make src/Main.elm --output elm.js --debug
+   command: python3 -m http.server
+ports:
+ - port: 8000
+   onOpen: open-preview
